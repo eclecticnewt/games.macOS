@@ -1,32 +1,13 @@
-//
-//  Games_macOSApp.swift
-//  Games.macOS
-//
-//  Created by Michael Ventimiglia on 6/25/24.
-//
-
 import SwiftUI
-import SwiftData
+import Intents
 
 @main
 struct Games_macOSApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(sharedModelContainer)
     }
 }
